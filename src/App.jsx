@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import styles from './App.module.css';
 
-import { createSignal } from 'solid-js';
+import { createSignal, For } from 'solid-js';
+import { AddTodoForm } from './AddTodoForm';
 import { TodoListItem } from './TodoListItem';
 
 function App() {
@@ -11,10 +12,14 @@ function App() {
   ]);
 
   return (
-    <ul>
-      <TodoListItem todo={todos()[0]} />
-      <TodoListItem todo={todos()[1]} />
-    </ul>
+    <div>
+      <ul>
+        <For each={todos()}>
+          {(todo) => <TodoListItem todo={todo} setTodos={setTodos} />}
+        </For>
+      </ul>
+      <AddTodoForm setTodos={setTodos} />
+    </div>
   );
 }
 
