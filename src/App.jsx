@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import styles from './App.module.css';
 
+import { createSignal } from 'solid-js';
+
+const [count, setCount] = createSignal(0);
+
+  // 一定間隔での処理
+  setInterval(() => {
+    setCount(count() + 1);
+  }, 1000);
+  
 function App() {
+
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
+    <div>
+      <h1>カウント数 : {count()}</h1>
+      <button
+        onClick={() => {
+          setCount(count() + 1);
+        }}
+      >
+        ＋１カウンター
+      </button>
     </div>
   );
 }
