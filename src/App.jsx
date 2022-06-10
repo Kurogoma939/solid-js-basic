@@ -2,27 +2,19 @@ import logo from './logo.svg';
 import styles from './App.module.css';
 
 import { createSignal } from 'solid-js';
+import { TodoListItem } from './TodoListItem';
 
-const [count, setCount] = createSignal(0);
-
-  // 一定間隔での処理
-  setInterval(() => {
-    setCount(count() + 1);
-  }, 1000);
-  
 function App() {
+  const [todos, setTodos] = createSignal([
+    { text: 'Walk the dog', complete: false },
+    { text: 'Do homework', complete: true },
+  ]);
 
   return (
-    <div>
-      <h1>カウント数 : {count()}</h1>
-      <button
-        onClick={() => {
-          setCount(count() + 1);
-        }}
-      >
-        ＋１カウンター
-      </button>
-    </div>
+    <ul>
+      <TodoListItem todo={todos()[0]} />
+      <TodoListItem todo={todos()[1]} />
+    </ul>
   );
 }
 
